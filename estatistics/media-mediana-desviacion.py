@@ -1,5 +1,6 @@
 import numpy as np
 import math
+import statistics as stat
 
 def run():
     # data = [18, 20, 21, 23, 25, 28, 32, 35, 39]
@@ -8,6 +9,7 @@ def run():
 
     print("Media: ", np.mean(data))
     print("Mediana: ", np.median(data))
+    print("Moda: ", stat.mode(data))
 
     print("----------------")
 
