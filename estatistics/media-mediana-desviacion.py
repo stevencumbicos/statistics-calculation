@@ -3,8 +3,10 @@ import math
 import statistics as stat
 
 def run():
-    # data = [18, 20, 21, 23, 25, 28, 32, 35, 39]
-    data = [52,55,58]
+    data = [42, 47, 53, 47, 50, 45, 46, 48, 41, 49, 45, 40, 54]
+    data.sort()
+    print(f"Los datos ordenados: ", data)
+
     print("----------------")
 
     print("Media: ", np.mean(data))
