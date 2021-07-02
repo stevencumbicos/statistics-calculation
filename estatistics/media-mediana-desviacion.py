@@ -42,13 +42,25 @@ def sample_variance(data):
     print("----------------")
 
 def average_deviation(data):
+    print("Desviación Media:")
+    # for i, _ in enumerate(data):
+    #     print("El valor de array[{0}] es {1}".format(i,data[i]))
+    moda = np.mean(data)
+    res = []
+    res = [round(abs(ele - moda),2) for ele in data]
+    # dictionary = {
+    #     data[0] : res[0],
+    #     data[1]: res[1],
+    #     data[2]: res[2],
+    #     data[3]: res[3],
+    #     data[4]: res[4],
+    # }
+    # for key, value in dictionary.items():
+    #     print(key, "→", value)
+    for i, _ in enumerate(res):
+        print("El valor de array[{0}] es {1}".format(i,res[i]))
+
     print("----------------")
-    print("----------------")
-    print("----------------")
-    lista = [0]
-    a = abs(data + lista)
-    print(a)
-    
 
     # promedio = mean(data)
     # average = (12 - promedio)
