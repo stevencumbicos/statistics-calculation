@@ -4,73 +4,49 @@ import pandas as pd
 import statistics as stat
 import statistics as s
 
-
-# def mean_median_mode(data):
-#     print("----------------")
-#     print("Media: ", np.mean(data))
-#     print("Mediana: ", np.median(data))
-#     print("Moda: ", stat.mode(data))
-
-
 def mean(data):
-    print("Media: ", np.mean(data))
-    # return
+    print("MEDIA: ", np.mean(data))
 
 def median(data):
-    print("Mediana: ", np.median(data))
+    print("MEDIANA: ", np.median(data))
 
 def mode(data):
-    print("Moda: ", stat.mode(data))
+    print("MODA: ", stat.mode(data))
 
 
 # standard variance
 # and → standard population variance
-def standard_variance(data):
+def population_variance(data):
     print("----------------")
-    print("Varianza Población: ", np.var(data))
-    print("Desviación Estándar (población): ", np.std(data))
+    print("VARIANZA POBLACIÓN: ", np.var(data))
+    print("DESVIACIÓN ESTÁNDAR (POBLACIÓN): ", np.std(data))
     print("----------------")
-
 
 # sample variance
 # and → sample standard variance
 def sample_variance(data):
-    print("Varianza Muestral: ", np.var(data, ddof=1))
+    print("VARIANZA MUESTRAL: ", np.var(data, ddof=1))
     de_muestra = np.var(data, ddof = 1)
     de_muestra = sqrt=de_muestra**(1 / 2)
-    print("Desviación Estándar Muestral: " + str(de_muestra))
+    print("DESVIACIÓN ESTÁNDAR MUESTRAL: " + str(de_muestra))
     print("----------------")
 
 def average_deviation(data):
-    print("Desviación Media:")
-    # for i, _ in enumerate(data):
-    #     print("El valor de array[{0}] es {1}".format(i,data[i]))
-    moda = np.mean(data)
-    res = []
-    res = [round(abs(ele - moda),2) for ele in data]
-    # dictionary = {
-    #     data[0] : res[0],
-    #     data[1]: res[1],
-    #     data[2]: res[2],
-    #     data[3]: res[3],
-    #     data[4]: res[4],
-    # }
-    # for key, value in dictionary.items():
-    #     print(key, "→", value)
-    for i, _ in enumerate(res):
-        print("El valor de array[{0}] es {1}".format(i,res[i]))
-
+    print("DESVIACIÓN MEDIA:")
+    mode_var = np.mean(data)
+    average_var = []
+    # Calculate the medium averiation
+    average_var = [round(abs(ele - mode_var),2) for ele in data]
+    print(f"Datos de la lista: {data}")
+    print("---------------------")
+    for i, _ in enumerate(average_var):
+        print("• La desviación media de [{0}] es {1}".format(data[0],average_var[i]))
     print("----------------")
 
-    # promedio = mean(data)
-    # average = (12 - promedio)
-    # print(average)
-
-
-def deciles(data):
+def deciles_numpy(data):
     data = np.array(data)
     deciles = np.percentile(data, np.arange(10,100,10))
-    print(f"Deciles con Numpy:")
+    print(f"DECILES (versión → Numpy):")
     # print(f"Deciles: {deciles}")
     dictionary = {
         "10%" : deciles[0],
@@ -87,9 +63,11 @@ def deciles(data):
         print(key, "→", value)
     print("----------------")
 
-def deci(data):
+
+
+def deciles_statictis(data):
     decil = s.quantiles(data, n=10)
-    print("Deciles (versión → Statictis y Excel):")
+    print("DECILES (versión → Statictis y Excel):")
     # print("Deciles con statictics:" + str(decil))
 
     dictionary = {
@@ -110,21 +88,20 @@ def deci(data):
 
 def run():
     # data = [25,28,30,30,35,35,36,37,37,38,40,40,40,40,40,40,41,43,48,50] 
-
     data = [12,13,12,14,15]
-
-    # data = [56,58,64,67,68,73,78,83,84,88,89,90,91,92,93,93,94,95,97,99]
     data.sort()
     print(f"Los datos ordenados: ", data)
-    # mean_median_mode(data)
     mean(data)
     median(data)
     mode(data)
-    standard_variance(data)
+    population_variance(data)
     sample_variance(data)
-    deciles(data)
-    deci(data)
+    deciles_numpy(data)
+    deciles_statictis(data)
     average_deviation(data)
 
 if __name__ == "__main__":
     run()
+
+        # print("• La desviación media de la posición [{0}] es {1}".format(i,average_var[i]))
+        # print("• La desviación media de la posición [{0}] es {1}".format(data[3],average_var[i]))
