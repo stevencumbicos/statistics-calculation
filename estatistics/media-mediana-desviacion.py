@@ -3,7 +3,6 @@ import numpy as np
 import math
 import pandas as pd
 import statistics as stat
-import statistics as s
 
 def mean(data):
     print("MEDIA: ", np.mean(data))
@@ -15,40 +14,40 @@ def mode(data):
     print("MODA: ", stat.mode(data))
 
 
-# standard variance
-# and → standard population variance
+# population variance
+# and → population standar deviation
 def population_variance(data):
-    print("----------------")
-    print("VARIANZA POBLACIÓN: ", np.var(data))
-    print("DESVIACIÓN ESTÁNDAR (POBLACIÓN): ", np.std(data))
-    print("----------------")
+    print("---------------------------------------")
+    print("DESVIACIÓN ESTÁNDAR (POBLACIÓN): ", round(np.std(data),2))
+    print("DESVIACIÓN ESTÁNDAR (POBLACIÓN): ", round(np.std(data),2))
+    print("---------------------------------------")
 
 # sample variance
-# and → sample standard variance
+# and → sample standard deviation
 def sample_variance(data):
-    print("VARIANZA MUESTRAL: ", np.var(data, ddof=1))
-    de_muestra = np.var(data, ddof = 1)
-    de_muestra = sqrt=de_muestra**(1 / 2)
+    print("VARIANZA MUESTRAL: ", round(np.var(data, ddof=1),2))
+    de_muestra = np.var(data, ddof = 1) 
+    de_muestra = sqrt= round(de_muestra**(1 / 2),2)
     print("DESVIACIÓN ESTÁNDAR MUESTRAL: " + str(de_muestra))
-    print("----------------")
+    print("---------------------------------------")
 
+# Average deviation
 def average_deviation(data):
     print("DESVIACIÓN MEDIA:")
+    print(f"Datos de la lista ordenados: {data}")
+    print("---------------------------------------------------------------------------------------------")
     mode_var = np.mean(data)
     average_var = []
-    # Calculate the medium averiation
-    average_var = [round(abs(ele - mode_var),2) for ele in data]
-    print(f"Datos de la lista: {data}")
-    print("---------------------")
+    average_var = [round(abs(value_data - mode_var),2) for value_data in data]
     for i, _ in enumerate(average_var):
         print("• La desviación media de [{0}] es {1}".format(data[i],average_var[i]))
-    print("----------------")
+    print("---------------------------------------")
+
 
 def deciles_numpy(data):
     data = np.array(data)
     deciles = np.percentile(data, np.arange(10,100,10))
     print(f"DECILES (versión → Numpy):")
-    # print(f"Deciles: {deciles}")
     dictionary = {
         "10%" : deciles[0],
         "20%" : deciles[1],
@@ -61,16 +60,14 @@ def deciles_numpy(data):
         "90%" : deciles[8]
     }
     for key, value in dictionary.items():
-        print(key, "→", value)
-    print("----------------")
+        print(key, "→", round(value,2))
+    print("---------------------------------------")
 
 
 
-def deciles_statictis(data):
-    decil = s.quantiles(data, n=10)
+def deciles_statistics(data):
+    decil = stat.quantiles(data, n = 10)
     print("DECILES (versión → Statictis y Excel):")
-    # print("Deciles con statictics:" + str(decil))
-
     dictionary = {
         "10%" : decil[0],
         "20%" : decil[1],
@@ -85,32 +82,31 @@ def deciles_statictis(data):
 
     for key, value in dictionary.items():
         print(key, "→", value)
-    print("----------------")
+    print("---------------------------------------------------------------------------------------------")
 
 
 
-def cuartiles(data):
+def quartiles_numpy(data):
     print("CUARTILES (versión → Numpy)")
     print("Mínimo: ", np.quantile(data,0))
     print("Cuartil 1 (25%): ", np.quantile(data,0.25)) 
     print("Cuartil 2 (50%): ", np.quantile(data,0.50)) 
     print("Cuartil 3 (75%): ", np.quantile(data,0.70)) 
     print("Máximo: ", np.quantile(data,1))
-    print("----------------")
+    print("---------------------------------------")
 
 
-def cuartiles_pandas(data):
+def quartiles_pandas(data):
     print("CUARTILES (versión → Pandas)")
     data_1 = {"A" : data}
     df = pd.DataFrame(data_1)
     print("Estadísticas: ", round(df["A"].describe()),2)
     grafica=df.boxplot()
+    print("---------------------------------------")
 
 
 def run():
-    # data = [25,28,30,30,35,35,36,37,37,38,40,40,40,40,40,40,41,43,48,50] 
-    data = [3,5,8,9,4,6,12,5,2,7]
-    # data = [12,13,12,14,15]
+    data = [25,28,30,30,35,35,36,37,37,38,40,40,40,40,40,40,41,43,48,50] 
     data.sort()
     print(f"Los datos ordenados: ", data)
     mean(data)
@@ -119,13 +115,10 @@ def run():
     population_variance(data)
     sample_variance(data)
     deciles_numpy(data)
-    deciles_statictis(data)
+    deciles_statistics(data)
     average_deviation(data)
-    cuartiles(data)
-    cuartiles_pandas(data)
+    quartiles_numpy(data)
+    quartiles_pandas(data)
 
 if __name__ == "__main__":
     run()
-
-        # print("• La desviación media de la posición [{0}] es {1}".format(i,average_var[i]))
-        # print("• La desviación media de la posición [{0}] es {1}".format(data[3],average_var[i]))
