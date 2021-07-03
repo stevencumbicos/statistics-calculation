@@ -1,3 +1,4 @@
+from pandas.core.frame import DataFrame
 import numpy as np
 import math
 import pandas as pd
@@ -40,7 +41,7 @@ def average_deviation(data):
     print(f"Datos de la lista: {data}")
     print("---------------------")
     for i, _ in enumerate(average_var):
-        print("• La desviación media de [{0}] es {1}".format(data[0],average_var[i]))
+        print("• La desviación media de [{0}] es {1}".format(data[i],average_var[i]))
     print("----------------")
 
 def deciles_numpy(data):
@@ -86,9 +87,30 @@ def deciles_statictis(data):
         print(key, "→", value)
     print("----------------")
 
+
+
+def cuartiles(data):
+    print("CUARTILES (versión → Numpy)")
+    print("Mínimo: ", np.quantile(data,0))
+    print("Cuartil 1 (25%): ", np.quantile(data,0.25)) 
+    print("Cuartil 2 (50%): ", np.quantile(data,0.50)) 
+    print("Cuartil 3 (75%): ", np.quantile(data,0.70)) 
+    print("Máximo: ", np.quantile(data,1))
+    print("----------------")
+
+
+def cuartiles_pandas(data):
+    print("CUARTILES (versión → Pandas)")
+    data_1 = {"A" : data}
+    df = pd.DataFrame(data_1)
+    print("Estadísticas: ", round(df["A"].describe()),2)
+    grafica=df.boxplot()
+
+
 def run():
     # data = [25,28,30,30,35,35,36,37,37,38,40,40,40,40,40,40,41,43,48,50] 
-    data = [12,13,12,14,15]
+    data = [3,5,8,9,4,6,12,5,2,7]
+    # data = [12,13,12,14,15]
     data.sort()
     print(f"Los datos ordenados: ", data)
     mean(data)
@@ -99,6 +121,8 @@ def run():
     deciles_numpy(data)
     deciles_statictis(data)
     average_deviation(data)
+    cuartiles(data)
+    cuartiles_pandas(data)
 
 if __name__ == "__main__":
     run()
