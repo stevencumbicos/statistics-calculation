@@ -106,7 +106,8 @@ def quartiles_pandas(data):
 
 
 def run():
-    data = [25,28,30,30,35,35,36,37,37,38,40,40,40,40,40,40,41,43,48,50] 
+    data = [1.3, 7.0, 3.6, 4.1, 5.0] 
+    print(f"Los datos sin ordenar: ", data)
     data.sort()
     print(f"Los datos ordenados: ", data)
     mean(data)
