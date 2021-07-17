@@ -18,7 +18,7 @@ def mode(data):
 # and → population standar deviation
 def population_variance(data):
     print("---------------------------------------")
-    print("DESVIACIÓN ESTÁNDAR (POBLACIÓN): ", round(np.std(data),2))
+    print("VARIANZA POBLACIÓN: ", np.var(data))
     print("DESVIACIÓN ESTÁNDAR (POBLACIÓN): ", round(np.std(data),2))
     print("---------------------------------------")
 
