@@ -5,22 +5,25 @@ import pandas as pd
 import statistics as stat
 
 def mean(data):
-    print("MEDIA: ", np.mean(data))
+    print("---------------------------------------------------------------------------------------------")
+    print("MEDIA: ", round(np.mean(data),2))
 
 def median(data):
-    print("MEDIANA: ", np.median(data))
+    print("---------------------------------------------------------------------------------------------")
+    print("MEDIANA: ", round(np.median(data),2))
+    print("---------------------------------------------------------------------------------------------")
 
 def mode(data):
-    print("MODA: ", stat.mode(data))
+    print("MODA: ", round(stat.mode(data),2))
 
 
 # population variance
 # and → population standar deviation
 def population_variance(data):
-    print("---------------------------------------")
-    print("VARIANZA POBLACIÓN: ", np.var(data))
+    print("---------------------------------------------------------------------------------------------")
+    print("VARIANZA POBLACIÓN: ", round(np.var(data),2))
     print("DESVIACIÓN ESTÁNDAR (POBLACIÓN): ", round(np.std(data),2))
-    print("---------------------------------------")
+    print("---------------------------------------------------------------------------------------------")
 
 # sample variance
 # and → sample standard deviation
@@ -29,7 +32,7 @@ def sample_variance(data):
     de_muestra = np.var(data, ddof = 1) 
     de_muestra = sqrt= round(de_muestra**(1 / 2),2)
     print("DESVIACIÓN ESTÁNDAR MUESTRAL: " + str(de_muestra))
-    print("---------------------------------------")
+    print("---------------------------------------------------------------------------------------------")
 
 # Average deviation
 def average_deviation(data):
@@ -41,7 +44,7 @@ def average_deviation(data):
     average_var = [round(abs(value_data - mode_var),2) for value_data in data]
     for i, _ in enumerate(average_var):
         print("• La desviación media de [{0}] es {1}".format(data[i],average_var[i]))
-    print("---------------------------------------")
+    print("---------------------------------------------------------------------------------------------")
 
 
 def deciles_numpy(data):
@@ -61,23 +64,21 @@ def deciles_numpy(data):
     }
     for key, value in dictionary.items():
         print(key, "→", round(value,2))
-    print("---------------------------------------")
-
+    print("---------------------------------------------------------------------------------------------")
 
 
 def deciles_statistics(data):
     decil = stat.quantiles(data, n = 10)
     print("DECILES (versión → Statictis y Excel):")
     dictionary = {
-        "10%" : decil[0],
-        "20%" : decil[1],
-        "30%" : decil[2],
-        "40%" : decil[3],
-        "50%" : decil[4],
-        "60%" : decil[5],
-        "70%" : decil[6],
-        "80%" : decil[7],
-        "90%" : decil[8]
+        "10%" : round(decil[0],2),
+        "30%" : round(decil[2],2),
+        "40%" : round(decil[3],2),
+        "50%" : round(decil[4],2),
+        "60%" : round(decil[5],2),
+        "70%" : round(decil[6],2),
+        "80%" : round(decil[7],2),
+        "90%" : round(decil[8],2)
     }
 
     for key, value in dictionary.items():
@@ -85,15 +86,14 @@ def deciles_statistics(data):
     print("---------------------------------------------------------------------------------------------")
 
 
-
 def quartiles_numpy(data):
     print("CUARTILES (versión → Numpy)")
     print("Mínimo: ", np.quantile(data,0))
-    print("Cuartil 1 (25%): ", np.quantile(data,0.25)) 
-    print("Cuartil 2 (50%): ", np.quantile(data,0.50)) 
-    print("Cuartil 3 (75%): ", np.quantile(data,0.70)) 
+    print("Cuartil 1 (25%): ", round(np.quantile(data,0.25),2)) 
+    print("Cuartil 2 (50%): ", round(np.quantile(data,0.50),2)) 
+    print("Cuartil 3 (75%): ", round(np.quantile(data,0.70),2)) 
     print("Máximo: ", np.quantile(data,1))
-    print("---------------------------------------")
+    print("---------------------------------------------------------------------------------------------")
 
 
 def quartiles_pandas(data):
@@ -101,15 +101,15 @@ def quartiles_pandas(data):
     data_1 = {"A" : data}
     df = pd.DataFrame(data_1)
     print("Estadísticas: ", round(df["A"].describe()),2)
-    grafica=df.boxplot()
-    print("---------------------------------------")
+    grafica = df.boxplot()
+    print("---------------------------------------------------------------------------------------------")
 
 
 def run():
-    data = [1.3, 7.0, 3.6, 4.1, 5.0] 
-    print(f"Los datos sin ordenar: ", data)
+    data = [1.3, 7.0, 3.6, 4.1, 5.0, 3.4, 6.3, 8.2, 7.3, 5.3, 3.5, 5.0, 6.5, 2.3, 6.5, 7.7, 9.0, 8.1, 7.0, 6.5, 4.0, 5.0, 6.0, 7.0] 
+    print(f"Unsorted data: ", data)
     data.sort()
-    print(f"Los datos ordenados: ", data)
+    print(f"Ordered data: ", data)
     mean(data)
     median(data)
     mode(data)
